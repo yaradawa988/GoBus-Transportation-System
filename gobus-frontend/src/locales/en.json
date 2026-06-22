@@ -1,0 +1,20 @@
+{
+  "home": "Home",
+  "trips": "Trips",
+  "stations": "Stations",
+  "contact": "Contact",
+  "login": "Login",
+  "sign up": "Sign Up",
+  "book_now": "Book Now",
+  "search_trip": "Search Trip",
+  "from": "From",
+  "to": "To",
+  "departure": "Departure",
+  "arrival": "Arrival",
+  "ticket": "Ticket",
+  "download_pdf": "Download PDF",
+  "scan_gate": "Scan at boarding gate",
+  "seat": "Seat",
+  "support": "Support",
+  "price": "Price"
+}

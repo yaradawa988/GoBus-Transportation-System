@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo.png" />
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>
+    GoBus | Smart Bus Booking & Travel Platform
+  </title>
+
+  <meta
+    name="description"
+    content="Book bus tickets online with GoBus. Search routes, compare schedules, reserve seats, and enjoy comfortable travel across cities."
+  />
+
+  <meta
+    name="keywords"
+    content="GoBus, bus booking, online bus tickets, travel platform, bus reservations, transportation, Syria bus booking"
+  />
+
+  <meta
+    name="author"
+    content="GoBus"
+  />
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="GoBus | Smart Bus Booking Platform"
+  />
+
+  <meta
+    property="og:description"
+    content="Search trips, reserve seats, and travel comfortably with GoBus."
+  />
+
+  <meta
+    property="og:type"
+    content="website"
+  />
+
+  <meta
+    property="og:image"
+    content="/logo.png"
+  />
+
+  <!-- Twitter -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <meta
+    name="twitter:title"
+    content="GoBus | Smart Bus Booking Platform"
+  />
+
+  <meta
+    name="twitter:description"
+    content="Book bus tickets online quickly and securely."
+  />
+
+  <meta
+    name="twitter:image"
+    content="/logo.png"
+  />
+  <style>
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #0f172a;
+  overflow-x: hidden;
+}
+
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #111827 50%,
+    #1e293b 100%
+  );
+
+  overflow: hidden;
+  transition: all 0.8s ease;
+}
+
+/* الدوائر الضبابية */
+.bg-blur {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.blur1 {
+  width: 350px;
+  height: 350px;
+  background: #2563eb;
+  top: -80px;
+  left: -80px;
+
+  animation: float 6s infinite ease-in-out;
+}
+
+.blur2 {
+  width: 300px;
+  height: 300px;
+  background: #06b6d4;
+  bottom: -50px;
+  right: -50px;
+
+  animation: float 8s infinite ease-in-out;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+
+.loader-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+.loader-content h2 {
+  color: white;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.loader-content p {
+  color: #cbd5e1;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  animation: pulse 2s infinite;
+
+  filter:
+    drop-shadow(0 0 20px rgba(37,99,235,.5))
+    drop-shadow(0 0 35px rgba(6,182,212,.35));
+
+  transition: transform .3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.loader-card h2 {
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 8px;
+
+  font-size: 30px;
+}
+
+.loader-card p {
+  color: #cbd5e1;
+  margin-bottom: 30px;
+}
+
+
+.loading-bar {
+  width: 100%;
+  height: 8px;
+
+  background: rgba(255,255,255,0.1);
+
+  border-radius: 50px;
+
+  overflow: hidden;
+}
+
+.loading-bar span {
+  display: block;
+
+  height: 100%;
+  width: 40%;
+
+  border-radius: 50px;
+
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #06b6d4
+  );
+
+  animation: loading 1.4s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+
+.preloader-hide {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.05);
+  filter: blur(10px);
+}
+</style>
+</head>
+
+<body>
+  
+<div id="preloader">
+  <div class="bg-blur blur1"></div>
+  <div class="bg-blur blur2"></div>
+
+  <div class="loader-content">
+  <img src="/logo.png" alt="GoBus" class="logo" />
+
+  <h2>GoBus</h2>
+  <p>Smart Bus Booking Platform</p>
+
+  <div class="loading-bar">
+    <span></span>
+  </div>
+</div>
+</div>
+
+<div id="root"></div>
+
+  <script
+    type="module"
+    src="/src/main.jsx"
+  ></script>
+</body>
+
+</html>
