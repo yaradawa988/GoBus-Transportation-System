@@ -1,4 +1,4 @@
-# 🚌 GoBus Transportation Booking System
+# GoBus Transportation Booking System
 
 A modern full-stack transportation booking platform that allows passengers to search trips, book seats, generate QR-code tickets, and manage bookings through a professional administration dashboard.
 
