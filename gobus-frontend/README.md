@@ -4,7 +4,7 @@ A modern full-stack transportation booking platform that allows passengers to se
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 ### Backend
 
@@ -14,19 +14,40 @@ A modern full-stack transportation booking platform that allows passengers to se
 * REST API
 * Eloquent ORM
 
+
+✔ Queue
+
+✔ Scheduler
+
+✔ Notifications
+
+
+
 ### Frontend
 
-* React.js
-* Vite
+* React.js 19
+* Vite  8
 * Tailwind CSS
 * React Router
 * Axios
 * React Icons
 * React Toastify
+* React Hook Form
 
+
+
+Deployment
+
+✔ Docker
+✔ CapRover
+✔ Nginx
+✔ PHP-FPM
+✔ Supervisor
+✔ Redis
+✔ MariaDB
 ---
 
-## ✨ Features
+##  Features
 
 ### Passenger Features
 
@@ -54,7 +75,7 @@ A modern full-stack transportation booking platform that allows passengers to se
 
 ---
 
-## 📊 Dashboard Statistics
+## Dashboard Statistics
 
 The admin dashboard provides:
 
@@ -68,7 +89,7 @@ The admin dashboard provides:
 
 ---
 
-## 🔐 Authentication
+##  Authentication
 
 Authentication is implemented using:
 
@@ -80,12 +101,13 @@ Authentication is implemented using:
 ---
 
 
+
 ## ⚙️ Installation
 
 ### Backend
 
 ```bash
-cd backend
+cd gobus-api
 
 composer install
 
@@ -101,7 +123,7 @@ php artisan serve
 ### Frontend
 
 ```bash
-cd frontend
+cd gobus-frontend
 
 npm install
 
@@ -110,10 +132,34 @@ npm run dev
 
 ---
 
-## 👨‍💻 Author
+---
 
-Developed by yara dawa
+# 👩‍💻 Author
+
+**Yara Dawa**
 
 Full Stack Developer
 
-Laravel | React.js | REST APIs | AI Integration
+Specialized in:
+
+- Laravel
+- React.js
+- REST APIs
+- AI Integration
+- Docker
+- Database Design
+
+---
+
+## Connect With Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yara_Dawa-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/yara-dawa-9090ab296)
+
+[![GitHub](https://img.shields.io/badge/GitHub-yaradawa988-181717?style=for-the-badge&logo=github)](https://github.com/yaradawa988)
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-6C63FF?style=for-the-badge&logo=vercel)](https://yaradawa-portfolio.vercel.app)
+
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail)](https://mail.google.com/mail/?view=cm&to=yara.mas484@gmail.com&subject=Hello%20Yara)
+---
+
+⭐ If you found this project useful, don't forget to star the repository!

@@ -68,7 +68,7 @@ NotificationsPage() {
       <section className=" bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.15),transparent_60%)] 
         min-h-screen
         bg-slate-50
-        py-10
+        py-16
       ">
 
         <div className="

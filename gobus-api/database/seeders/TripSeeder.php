@@ -12,38 +12,132 @@ class TripSeeder extends Seeder
      */
     public function run(): void
     {
-        Trip::create([
-            'bus_id' => 1,
-            'departure_station_id' => 1,
-            'arrival_station_id' => 4,
+      
 
-            'departure_time' => now()->addDay(),
-            'arrival_time' => now()->addDay()->addHours(5),
+        $trips = [
 
-            'duration_minutes' => 300,
+            [
+                'bus_id'=>1,
+                'departure_station_id'=>1,
+                'arrival_station_id'=>3,
+                'departure_time'=>now()->addDay()->setTime(8,0),
+                'arrival_time'=>now()->addDay()->setTime(13,0),
+                'duration_minutes'=>300,
+                'price'=>35,
+                'status'=>'scheduled',
+                'description'=>'Damascus → Aleppo',
+            ],
 
-            'price' => 25,
+            [
+                'bus_id'=>2,
+                'departure_station_id'=>3,
+                'arrival_station_id'=>1,
+                'departure_time'=>now()->addDay()->setTime(15,0),
+                'arrival_time'=>now()->addDay()->setTime(20,0),
+                'duration_minutes'=>300,
+                'price'=>35,
+                'status'=>'scheduled',
+                'description'=>'Aleppo → Damascus',
+            ],
 
-            'status' => 'scheduled',
+            [
+                'bus_id'=>3,
+                'departure_station_id'=>1,
+                'arrival_station_id'=>6,
+                'departure_time'=>now()->addDays(2)->setTime(9,0),
+                'arrival_time'=>now()->addDays(2)->setTime(13,0),
+                'duration_minutes'=>240,
+                'price'=>20,
+                'status'=>'scheduled',
+                'description'=>'Damascus → Latakia',
+            ],
 
-            'description' => 'Damascus → Aleppo',
-        ]);
+            [
+                'bus_id'=>4,
+                'departure_station_id'=>6,
+                'arrival_station_id'=>1,
+                'departure_time'=>now()->addDays(2)->setTime(15,0),
+                'arrival_time'=>now()->addDays(2)->setTime(19,0),
+                'duration_minutes'=>240,
+                'price'=>20,
+                'status'=>'scheduled',
+                'description'=>'Latakia → Damascus',
+            ],
 
-        Trip::create([
-            'bus_id' => 2,
-            'departure_station_id' => 4,
-            'arrival_station_id' => 1,
+            [
+                'bus_id'=>1,
+                'departure_station_id'=>4,
+                'arrival_station_id'=>3,
+                'departure_time'=>now()->addDays(3)->setTime(8,30),
+                'arrival_time'=>now()->addDays(3)->setTime(11,30),
+                'duration_minutes'=>180,
+                'price'=>15,
+                'status'=>'scheduled',
+                'description'=>'Homs → Aleppo',
+            ],
 
-            'departure_time' => now()->addDays(2),
-            'arrival_time' => now()->addDays(2)->addHours(5),
+            [
+                'bus_id'=>2,
+                'departure_station_id'=>3,
+                'arrival_station_id'=>4,
+                'departure_time'=>now()->addDays(3)->setTime(16,0),
+                'arrival_time'=>now()->addDays(3)->setTime(19,0),
+                'duration_minutes'=>180,
+                'price'=>15,
+                'status'=>'scheduled',
+                'description'=>'Aleppo → Homs',
+            ],
 
-            'duration_minutes' => 300,
+            [
+                'bus_id'=>3,
+                'departure_station_id'=>5,
+                'arrival_station_id'=>7,
+                'departure_time'=>now()->addDays(4)->setTime(10,0),
+                'arrival_time'=>now()->addDays(4)->setTime(12,30),
+                'duration_minutes'=>150,
+                'price'=>12,
+                'status'=>'scheduled',
+                'description'=>'Hama → Tartus',
+            ],
 
-            'price' => 25,
+            [
+                'bus_id'=>4,
+                'departure_station_id'=>7,
+                'arrival_station_id'=>5,
+                'departure_time'=>now()->addDays(4)->setTime(15,0),
+                'arrival_time'=>now()->addDays(4)->setTime(17,30),
+                'duration_minutes'=>150,
+                'price'=>12,
+                'status'=>'scheduled',
+                'description'=>'Tartus → Hama',
+            ],
 
-            'status' => 'scheduled',
+            [
+                'bus_id'=>2,
+                'departure_station_id'=>13,
+                'arrival_station_id'=>1,
+                'departure_time'=>now()->addDays(5)->setTime(7,0),
+                'arrival_time'=>now()->addDays(5)->setTime(9,0),
+                'duration_minutes'=>120,
+                'price'=>10,
+                'status'=>'scheduled',
+                'description'=>'Daraa → Damascus',
+            ],
 
-            'description' => 'Aleppo → Damascus',
-        ]);
+            [
+                'bus_id'=>1,
+                'departure_station_id'=>1,
+                'arrival_station_id'=>13,
+                'departure_time'=>now()->addDays(35)->setTime(17,0),
+                'arrival_time'=>now()->addDays(35)->setTime(19,0),
+                'duration_minutes'=>120,
+                'price'=>10,
+                'status'=>'scheduled',
+                'description'=>'Damascus → Daraa',
+            ],
+
+        ];
+
+        Trip::insert($trips);
     }
 }

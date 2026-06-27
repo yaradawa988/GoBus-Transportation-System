@@ -1,0 +1,92 @@
+version: "3.9"
+
+services:
+
+  backend:
+
+    build:
+      context: ./gobus-api
+
+    container_name: gobus-api
+
+    restart: unless-stopped
+
+    ports:
+      - "8000:80"
+
+    depends_on:
+      - database
+      - redis
+
+    environment:
+
+      APP_ENV: production
+
+      APP_DEBUG: false
+
+      DB_HOST: database
+
+      REDIS_HOST: redis
+
+    volumes:
+
+      - ./gobus-api/storage:/var/www/html/storage
+
+  frontend:
+
+    build:
+      context: ./gobus-frontend
+
+    container_name: gobus-frontend
+
+    restart: unless-stopped
+
+    ports:
+
+      - "3000:80"
+
+    depends_on:
+
+      - backend
+
+  database:
+
+    image: mariadb:11
+
+    container_name: gobus-db
+
+    restart: unless-stopped
+
+    environment:
+
+      MYSQL_ROOT_PASSWORD: root
+
+      MYSQL_DATABASE: gobus
+
+      MYSQL_USER: gobus
+
+      MYSQL_PASSWORD: gobus
+
+    ports:
+
+      - "3306:3306"
+
+    volumes:
+
+      - gobus-db:/var/lib/mysql
+
+  redis:
+
+    image: redis:7-alpine
+
+    container_name: gobus-redis
+
+    restart: unless-stopped
+
+    ports:
+
+      - "6379:6379"
+
+volumes:
+
+    gobus-db:

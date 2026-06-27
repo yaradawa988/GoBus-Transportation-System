@@ -183,7 +183,7 @@ export default function Support() {
             </p>
 
             <a
-              href="https://wa.me/963999999999"
+              href="https://wa.me/963xxxxxxxxx"
               target="_blank"
               rel="noreferrer"
               className="

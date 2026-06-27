@@ -13,20 +13,39 @@ class BusSeeder extends Seeder
     public function run(): void
     {
         Bus::insert([
-            [
-                'name' => 'VIP Bus 01',
-                'bus_number' => 'BUS-001',
-                'type' => 'VIP',
-                'seat_count' => 40,
-                'status' => true,
-            ],
-            [
-                'name' => 'Economy Bus 01',
-                'bus_number' => 'BUS-002',
-                'type' => 'Economy',
-                'seat_count' => 50,
-                'status' => true,
-            ],
-        ]);
+
+    [
+        'name' => 'VIP Bus 01',
+        'bus_number' => 'BUS-001',
+        'type' => 'VIP',
+        'seat_count' => 40,
+        'status' => true,
+    ],
+
+    [
+        'name' => 'Economy Bus 01',
+        'bus_number' => 'BUS-002',
+        'type' => 'Economy',
+        'seat_count' => 50,
+        'status' => true,
+    ],
+
+    [
+        'name' => 'Economy Bus 02',
+        'bus_number' => 'BUS-003',
+        'type' => 'Economy',
+        'seat_count' => 40,
+        'status' => true,
+    ],
+
+    [
+        'name' => 'VIP Bus 02',
+        'bus_number' => 'BUS-004',
+        'type' => 'VIP',
+        'seat_count' => 30,
+        'status' => true,
+    ],
+
+]);
     }
 }

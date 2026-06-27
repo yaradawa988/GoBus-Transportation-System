@@ -218,3 +218,17 @@ Route::prefix('admin')
         Route::get('/logs/user/{userId}', [ActivityLogController::class, 'byUser']);
         Route::delete('/logs/{id}', [ActivityLogController::class, 'destroy']);
     });
+
+
+    //////////////////////////////////////////
+
+    Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'app' => 'GoBus API',
+        'time' => now(),
+    ]);
+});
+
+
+/////////////////////////////////////////////
