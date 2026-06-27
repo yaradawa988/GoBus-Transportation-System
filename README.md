@@ -134,10 +134,9 @@ npm run dev
 
 ---
 
-# 👩‍💻 Author
+# 👩‍💻 Developed by:
 
 **Yara Dawa**
-
 Full Stack Developer
 
 Specialized in:
