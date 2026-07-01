@@ -13,3 +13,5 @@ README.md
 .env.local
 
 .env.development
+
+npm-debug.log
