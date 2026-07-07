@@ -15,9 +15,15 @@ class Bus extends Model
         'seat_count',
         'image',
         'status',
-        'description'
+        'description',
+        'company_id'
     ];
+    
 
+    public function company()
+{
+    return $this->belongsTo(Company::class);
+}
     public function seats()
     {
         return $this->hasMany(Seat::class);

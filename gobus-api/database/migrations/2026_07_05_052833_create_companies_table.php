@@ -11,21 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buses', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            
+                 
             $table->string('name');
 
-            $table->string('bus_number')->unique();
+            $table->string('logo')->nullable();
 
-            $table->string('type');
+            $table->string('phone')->nullable();
 
-            $table->integer('seat_count');
+            $table->string('email')->nullable();
 
-            $table->string('image')->nullable();
+            $table->text('description')->nullable();
 
             $table->boolean('status')->default(true);
-            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buses');
+        Schema::dropIfExists('companies');
     }
 };

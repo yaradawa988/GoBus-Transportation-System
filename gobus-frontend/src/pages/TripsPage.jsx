@@ -39,8 +39,8 @@ export default function TripsPage() {
   className="
   relative
   overflow-hidden
-  pt-28
-  pb-14"
+  pt-20
+  pb-12"
 >
 
   {/* Background */}
@@ -100,8 +100,8 @@ export default function TripsPage() {
 
       <h1
         className="
-        text-4xl
-        md:text-5xl
+        text-2xl
+        md:text-3xl
         font-extrabold
         tracking-tight
         text-slate-800"
@@ -115,7 +115,7 @@ export default function TripsPage() {
         className="
         mt-4
         text-base
-        md:text-lg
+        md:text-base
         text-slate-600
         max-w-2xl
         mx-auto
@@ -140,8 +140,8 @@ export default function TripsPage() {
           className="
           bg-white/80
           backdrop-blur-md
-          px-5
-          py-3
+          px-3
+          py-2
           rounded-2xl
           shadow-md"
         >
@@ -158,8 +158,8 @@ export default function TripsPage() {
           className="
           bg-white/80
           backdrop-blur-md
-          px-5
-          py-3
+          px-3
+          py-2
           rounded-2xl
           shadow-md"
         >
@@ -176,8 +176,8 @@ export default function TripsPage() {
           className="
           bg-white/80
           backdrop-blur-md
-          px-5
-          py-3
+          px-3
+          py-2
           rounded-2xl
           shadow-md"
         >

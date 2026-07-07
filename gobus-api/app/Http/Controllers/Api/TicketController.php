@@ -138,6 +138,7 @@ public function generate(
         $ticket->load([
             'booking.user',
             'booking.trip.bus',
+            'booking.trip.company',
             'booking.trip.departureStation',
             'booking.trip.arrivalStation',
             'booking.seats'
@@ -175,6 +176,7 @@ public function generate(
 {
     $ticket = Ticket::with([
         'booking.user',
+        'booking.trip.company',
         'booking.trip.departureStation',
         'booking.trip.arrivalStation',
         'booking.seats'

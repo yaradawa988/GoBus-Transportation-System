@@ -28,6 +28,7 @@ use App\Http\Controllers\Api\Admin\TripsController;
 use App\Http\Controllers\Api\Admin\BookingManagementController;
 use App\Http\Controllers\Api\Admin\ReviewManagementController;
 use App\Http\Controllers\Api\Admin\ActivityLogController;
+use App\Http\Controllers\Api\Admin\CompanyController;
 use App\Http\Controllers\Api\NotificationController;
 
 
@@ -65,6 +66,13 @@ Route::get(
     '/stations',
     [StationPublicController::class,'index']
 );
+/*
+|--------------------------------------------------------------------------
+| Public Companies
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/companies', [CompanyController::class, 'index']);
 /*
 |--------------------------------------------------------------------------
 | USER BOOKINGS ROUTES
@@ -217,6 +225,18 @@ Route::prefix('admin')
         Route::get('/logs', [ActivityLogController::class, 'index']);
         Route::get('/logs/user/{userId}', [ActivityLogController::class, 'byUser']);
         Route::delete('/logs/{id}', [ActivityLogController::class, 'destroy']);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Companies CRUD
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/companies', [CompanyController::class,'index']);
+        Route::post('/companies', [CompanyController::class,'store']);
+        Route::get('/companies/{id}', [CompanyController::class,'show']);
+        Route::put('/companies/{id}', [CompanyController::class,'update']);
+        Route::delete('/companies/{id}', [CompanyController::class,'destroy']);
     });
 
 

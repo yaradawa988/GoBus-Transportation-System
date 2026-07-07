@@ -24,14 +24,24 @@ export default function SearchTripCard({ onSearch }) {
     }
   };
 
-  const submit = () => {
-    if (!form.departure_station_id || !form.arrival_station_id || !form.date) {
-  toast.error("Please complete all fields");
-  return;
-}
-toast.success("Trips loaded successfully");
-    onSearch(form);
+ const submit = () => {
+  if (!form.departure_station_id || !form.arrival_station_id || !form.date) {
+    toast.error("Please complete all fields");
+    return;
+  }
+
+  const fromStation = stations.find(s => s.id == form.departure_station_id);
+  const toStation = stations.find(s => s.id == form.arrival_station_id);
+
+  const payload = {
+    ...form,
+    from: fromStation?.name || "",
+    to: toStation?.name || ""
   };
+
+  toast.success("Trips loaded successfully");
+  onSearch(payload);
+};
 
   return (
     <div

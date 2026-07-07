@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             StationSeeder::class,
             RestStopSeeder::class,
-            BusSeeder::class,
+            
+            CompanySeeder::class, 
+            BusSeeder::class, 
             SeatSeeder::class,
             TripSeeder::class,
             TripStationSeeder::class,

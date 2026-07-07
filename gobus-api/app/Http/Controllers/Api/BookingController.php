@@ -195,7 +195,7 @@ class BookingController extends Controller
                     $request->payment_method === 'card'
                         ? 'Booking created. Please complete payment.'
                         : 'Booking submitted successfully.',
-                'booking' => $booking->load(['trip', 'user', 'seats'])
+                'booking' => $booking->load([ 'trip.company','trip', 'user', 'seats'])
             ], 201);
         });
 
@@ -276,7 +276,9 @@ $booking->user->notify(
         'status' => true,
         'message' => 'Payment completed successfully.',
         'booking' => $booking->fresh([
-            'ticket'
+            'ticket',
+            'trip.company'
+            
         ])
     ]);
 }
@@ -289,6 +291,7 @@ $booking->user->notify(
     );
 
     $query = Booking::with([
+        'trip.company',
         'trip.bus',
         'trip.departureStation',
         'trip.arrivalStation',
@@ -423,6 +426,7 @@ public function show(
 )
 {
     $booking = Booking::with([
+        'trip.company',
         'trip.bus',
         'trip.departureStation',
         'trip.arrivalStation',

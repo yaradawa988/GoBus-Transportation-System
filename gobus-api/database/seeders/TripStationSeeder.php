@@ -14,68 +14,117 @@ class TripStationSeeder extends Seeder
     {
        
 
+        /*
+        trip ids
+
+        1-4   Damascus -> Aleppo
+        5-8   Aleppo -> Damascus
+
+        9-12  Damascus -> Latakia
+        13-14 Latakia -> Damascus
+
+        15-16 Damascus -> Tartus
+        17-18 Tartus -> Damascus
+
+        19    Damascus -> Homs
+        20    Homs -> Damascus
+        */
+
         $routes = [
 
-            // Trip 1
-            [1,1,1],
-            [1,4,2],
-            [1,5,3],
-            [1,3,4],
+    [
+        'trip_ids' => range(1,4),
+        'stations' => [
+            [1,1],
+            [4,2],
+            [5,3],
+            [3,4],
+        ],
+    ],
 
-            // Trip2
-            [2,3,1],
-            [2,5,2],
-            [2,4,3],
-            [2,1,4],
+    [
+        'trip_ids' => range(5,8),
+        'stations' => [
+            [3,1],
+            [5,2],
+            [4,3],
+            [1,4],
+        ],
+    ],
 
-            // Trip3
-            [3,1,1],
-            [3,4,2],
-            [3,6,3],
+    [
+        'trip_ids' => range(9,12),
+        'stations' => [
+            [1,1],
+            [4,2],
+            [6,3],
+        ],
+    ],
 
-            // Trip4
-            [4,6,1],
-            [4,4,2],
-            [4,1,3],
+    [
+        'trip_ids' => range(13,14),
+        'stations' => [
+            [6,1],
+            [4,2],
+            [1,3],
+        ],
+    ],
 
-            // Trip5
-            [5,4,1],
-            [5,5,2],
-            [5,3,3],
+    [
+        'trip_ids' => range(15,16),
+        'stations' => [
+            [1,1],
+            [4,2],
+            [5,3],
+            [7,4],
+        ],
+    ],
 
-            // Trip6
-            [6,3,1],
-            [6,5,2],
-            [6,4,3],
+    [
+        'trip_ids' => range(17,18),
+        'stations' => [
+            [7,1],
+            [5,2],
+            [4,3],
+            [1,4],
+        ],
+    ],
 
-            // Trip7
-            [7,5,1],
-            [7,6,2],
-            [7,7,3],
+    [
+        'trip_ids' => [19],
+        'stations' => [
+            [1,1],
+            [4,2],
+        ],
+    ],
 
-            // Trip8
-            [8,7,1],
-            [8,6,2],
-            [8,5,3],
+    [
+        'trip_ids' => [20],
+        'stations' => [
+            [4,1],
+            [1,2],
+        ],
+    ],
 
-            // Trip9
-            [9,13,1],
-            [9,1,2],
+];
 
-            // Trip10
-            [10,1,1],
-            [10,13,2],
-        ];
+       foreach ($routes as $route) {
 
-        foreach($routes as $route){
+    foreach ($route['trip_ids'] as $tripId) {
+
+        foreach ($route['stations'] as $station) {
 
             TripStation::create([
-                'trip_id'=>$route[0],
-                'station_id'=>$route[1],
-                'order_no'=>$route[2]
+                'trip_id'    => $tripId,
+                'station_id' => $station[0],
+                'order_no'   => $station[1],
             ]);
 
         }
+
+    }
+
+}
 
     }
 }

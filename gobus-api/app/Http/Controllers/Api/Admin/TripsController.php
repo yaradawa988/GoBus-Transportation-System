@@ -8,6 +8,7 @@ use App\Models\Trip;
 use App\Models\TripStation;
 use App\Models\TripRestStop;
 use App\Models\Booking;
+use App\Models\Company;
 use App\Notifications\TripCancelledNotification;
 use App\Notifications\TripCompletedNotification;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,7 @@ class TripsController extends Controller
     public function index()
     {
         $trips = Trip::with([
+            'company',
             'bus',
             'departureStation',
             'arrivalStation'
@@ -38,6 +40,7 @@ class TripsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'company_id' => 'required|exists:companies,id',
             'bus_id' => 'required|exists:buses,id',
             'departure_station_id' => 'required|exists:stations,id',
             'arrival_station_id' => 'required|exists:stations,id',
@@ -55,6 +58,7 @@ class TripsController extends Controller
         ]);
 
         $trip = Trip::create([
+            'company_id' => $request->company_id,
             'bus_id' => $request->bus_id,
             'departure_station_id' => $request->departure_station_id,
             'arrival_station_id' => $request->arrival_station_id,
@@ -111,6 +115,7 @@ class TripsController extends Controller
     public function show($id)
     {
         $trip = Trip::with([
+            'company',
             'bus',
             'departureStation',
             'arrivalStation',
@@ -138,6 +143,7 @@ $availableSeats =
         $trip = Trip::findOrFail($id);
 
         $request->validate([
+            'company_id' => 'required|exists:companies,id',
             'bus_id' => 'required|exists:buses,id',
             'departure_station_id' => 'required|exists:stations,id',
             'arrival_station_id' => 'required|exists:stations,id',
@@ -155,6 +161,7 @@ $availableSeats =
         ]);
 
         $trip->update([
+            'company_id' => $request->company_id,
             'bus_id' => $request->bus_id,
             'departure_station_id' => $request->departure_station_id,
             'arrival_station_id' => $request->arrival_station_id,

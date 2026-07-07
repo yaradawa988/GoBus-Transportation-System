@@ -123,7 +123,7 @@ export default function TicketPage() {
 
   <div className="relative z-30 px-6 py-5">
     <h1 className="text-xl font-black tracking-[3px]">
-      GOBUS COMPANY
+      GOBUS 
     </h1>
 
     <p className="text-sm opacity-90">
@@ -143,6 +143,21 @@ export default function TicketPage() {
       "
     >
       Ticket #{ticket.ticket_number}
+    </div>
+
+     <div
+      className="
+        mt-3
+        inline-flex
+        bg-white/20
+        backdrop-blur-sm
+        px-3
+        py-1
+        rounded-full
+        text-xs
+      "
+    >
+    Operated by: {ticket.booking?.trip?.company?.name || "Company"} Company
     </div>
   </div>
 </div>

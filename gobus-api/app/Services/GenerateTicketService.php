@@ -7,6 +7,7 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Endroid\QrCode\Builder\Builder;
 use Illuminate\Support\Facades\Storage;
+use Endroid\QrCode\ErrorCorrectionLevel;
 class GenerateTicketService
 {
     /**
@@ -42,19 +43,24 @@ if (
 }
         $ticketNumber = 'TKT-' . strtoupper(uniqid());
 
-        $qrData = json_encode([
-            'ticket_number' => $ticketNumber,
-            'booking_id' => $booking->id,
-            'user_id' => $booking->user_id,
-            'user_email' => $booking->user->email,
-            'user_phone' => $booking->user->phone,
-        ]);
+       $qrData = json_encode([
 
-        $qrResult = Builder::create()
-            ->data($qrData)
-            ->size(300)
-            ->margin(10)
-            ->build();
+    'ticket_number' => $ticketNumber,
+    'user' => [
+        'name' => $booking->user->name,
+        'email' => $booking->user->email,
+        'phone' => $booking->user->phone,
+    ],
+    'issued_at' => now(),
+
+]);
+
+       $qrResult = Builder::create()
+    ->data($qrData)
+    ->size(220)
+    ->margin(2)
+    ->errorCorrectionLevel(ErrorCorrectionLevel::Low)
+    ->build();
 
         $qrPath = 'qrcodes/' . $ticketNumber . '.png';
 
@@ -74,11 +80,12 @@ if (
             'pdf.ticket',
             [
                 'booking' => $booking->load(
-                    'user',
-                    'trip.bus',
-                    'trip.departureStation',
-                    'trip.arrivalStation',
-                    'seats'
+                     'user',
+    'trip.company',
+    'trip.bus',
+    'trip.departureStation',
+    'trip.arrivalStation',
+    'seats'
                 ),
                 'ticket' => $ticket
             ]

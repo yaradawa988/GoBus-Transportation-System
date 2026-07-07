@@ -265,8 +265,8 @@
 
         
         .qr img {
-            width: 95px; 
-            height: 95px;
+            width: 98px; 
+            height: 98px;
             padding: 4px;
             background: #fff;
             border: 0.5px solid #e2e8f0; 
@@ -322,20 +322,25 @@
         <div class="white-curve"></div>
 
         <div class="header-content">
-            <h1>GOBUS COMPANY</h1>
+            <h1>GOBUS</h1>
             <p>Premium Bus Ticket</p>
             <div class="ticket-number">
                 Ticket #{{ $ticket->ticket_number }}
+                </div>
+                  <div class="ticket-number">
+                 Operated by: {{ $booking->trip->company->name ?? '' }} company
             </div>
         </div>
+        
     </div>
 
     <table class="body">
         <tr>
             <td class="left">
                 <div class="ticket-title-area">
-                    <div class="info-title">MODERMN : TRAVEL INFO</div>
+                    <div class="info-title">MODERMN : TRAVEL INFO </div>
                     <h2 class="main-ticket-label">BUS TICKET</h2>
+                    
                 </div>
 
                 <table class="from-to">
@@ -423,12 +428,25 @@
                 </div>
 
                 <div class="scan">Scan at boarding gate</div>
+<div class="seat">
+    <div class="seat-title">
+        SEAT
+    </div>
 
-                <div class="seat">
-                    <div class="seat-title">SEAT</div>
-                    <div class="seat-number">
-                        {{ $booking->seats->pluck('seat_number')->implode(', ') }}
-                    </div>
+    <div class="seat-number">
+        {{ $booking->seats->pluck('seat_number')->implode(', ') }}
+    </div>
+
+    <hr style="margin:6px 0;border:none;border-top:1px solid #e2e8f0;">
+
+    <div style="display: flex; align-items: center; gap: 6px;">
+      
+        
+        <div style="font-size:8px; color:#64748b; white-space: nowrap;">
+            {{ $booking->trip->company->name }} Company
+        </div>
+    </div>
+</div>
                 </div>
             </td>
         </tr>

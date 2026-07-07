@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 
 export default function BookingSuccessPage() {
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,6 +35,13 @@ export default function BookingSuccessPage() {
     );
   }
 
+  const company = booking.trip?.company;
+
+  const logoUrl =
+    company?.logo_url ||
+    company?.logo ||
+    null;
+
   const needsPayment =
     booking.booking_status === "pending_payment";
 
@@ -44,17 +52,19 @@ export default function BookingSuccessPage() {
     <MainLayout>
       <section className=" bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.15),transparent_60%)]  min-h-[80vh] bg-slate-50 flex items-center justify-center px-4 py-10 pt-24">
 
-        <div className="max-w-md w-full bg-white rounded-3xl shadow-lg border border-slate-100 p-6">
+        <div className="max-w-md w-full bg-white rounded-3xl shadow-lg border border-slate-100 p-4">
 
           {/* Header */}
 
           <div className="text-center">
 
-            <FaCheckCircle className="text-green-500 text-5xl mx-auto mb-3" />
-
-            <h1 className="text-2xl font-bold text-slate-800">
-              Booking Created
-            </h1>
+            <div className="flex items-center justify-center gap-2 text-slate-800 mb-3">
+  
+  <h1 className="text-2xl font-bold">
+    Booking Created
+  </h1>
+  <FaCheckCircle className="text-green-500 text-3xl" />
+</div>
 
             <p className="text-sm text-gray-500 mt-2">
               Your booking request has been created successfully.
@@ -65,7 +75,7 @@ export default function BookingSuccessPage() {
           {/* Payment Message */}
 
           {needsPayment && (
-            <div className="mt-5 bg-orange-50 border border-orange-200 rounded-2xl p-4">
+            <div className="mt-5 bg-orange-50 border border-orange-200 rounded-xl p-4">
 
               <div className="flex gap-3">
 
@@ -116,93 +126,97 @@ export default function BookingSuccessPage() {
 
             </div>
           )}
+{company && (
+  <div className="mt-4">
 
-          {/* Booking Details */}
+    <h3 className="text-xs font-semibold text-gray-400 mb-2 uppercase">
+      Travel Company
+    </h3>
 
-          <div className="mt-6 bg-slate-50 rounded-2xl p-4 space-y-3">
+    <div className="bg-white border rounded-lg p-3 flex items-center gap-3 shadow-sm">
 
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">
-                Booking #
-              </span>
+      <div className="w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center shrink-0">
 
-              <span className="font-semibold">
-                {booking.booking_number}
-              </span>
-            </div>
+        {logoUrl ? (
+          <img
+            src={logoUrl}
+            alt={company.name}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        ) : (
+          <FaBus className="text-slate-600 text-lg" />
+        )}
 
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">
-                Seats
-              </span>
+      </div>
 
-              <span className="font-semibold">
-                {booking.seats_count}
-              </span>
-            </div>
+      <div>
+        <p className="font-semibold text-sm">
+          {company.name}
+        </p>
 
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">
-                Payment
-              </span>
+        <p className="text-[10px] text-gray-400">
+          Operated by this company
+        </p>
+      </div>
 
-              <span className="font-semibold capitalize">
-                {booking.payment_method}
-              </span>
-            </div>
+    </div>
 
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">
-                Status
-              </span>
+  </div>
+)}{/* Booking Details */}
+<div className="mt-4 bg-slate-50 rounded-xl p-3 border border-slate-100">
+  <div className="grid grid-cols-2 gap-y-2 gap-x-4 text-xs">
+    {[
+      { label: "Booking #", value: booking.booking_number },
+      { label: "Seats", value: booking.seats_count },
+      { label: "Payment", value: booking.payment_method },
+      { label: "Status", value: <span className="text-orange-600 font-semibold">{booking.booking_status}</span> }
+    ].map((item, idx) => (
+      <div key={idx} className="flex flex-col">
+        <span className="text-gray-400">{item.label}</span>
+        <span className="font-semibold text-slate-800 truncate">{item.value}</span>
+      </div>
+    ))}
+  </div>
 
-              <span className="font-semibold text-orange-600">
-                {booking.booking_status}
-              </span>
-            </div>
+  <div className="flex justify-between items-center border-t border-slate-200 mt-3 pt-2">
+    <span className="text-sm font-medium">Total</span>
+    <span className="text-base font-bold text-green-600">{booking.total_price} SYP</span>
+  </div>
+</div>
 
-            <div className="flex justify-between border-t pt-3">
-              <span className="font-medium">
-                Total
-              </span>
+      
 
-              <span className="text-lg font-bold text-green-600">
-                {booking.total_price}  SYP
-              </span>
-            </div>
+        {/* Actions */}
+<div className="mt-4 grid grid-cols-1 gap-3">
+  {needsPayment && (
+    <button
+      onClick={() => navigate("/my-trips")}
+      className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 rounded-lg font-medium transition shadow-sm flex items-center justify-center gap-2"
+    >
+      <FaCreditCard className="text-sm" />
+      Pay Now
+    </button>
+  )}
 
-          </div>
-
-          {/* Actions */}
-
-          <div className="mt-6 flex flex-col gap-3">
-
-            {needsPayment && (
-              <button
-                onClick={() => navigate("/my-trips")}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-semibold transition"
-              >
-                <FaCreditCard className="inline mr-2" />
-                Pay Now
-              </button>
-            )}
-
-            <button
-              onClick={() => navigate("/my-trips")}
-              className="w-full border py-3 rounded-xl font-semibold hover:bg-gray-50 transition"
-            >
-              <FaBus className="inline mr-2" />
-              View My Trips
-            </button>
-
-            <button
-              onClick={() => navigate("/")}
-              className="w-full border py-3 rounded-xl font-semibold hover:bg-gray-50 transition"
-            >
-              Back to Home
-            </button>
-
-          </div>
+  <div className="grid grid-cols-2 gap-3">
+    <button
+      onClick={() => navigate("/my-trips")}
+      className="border border-gray-200 py-2.5 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition text-sm flex items-center justify-center gap-2"
+    >
+      <FaBus className="text-sm" />
+      My Trips
+    </button>
+    <button
+      onClick={() => navigate("/")}
+      className="border border-gray-200 py-2.5 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition text-sm"
+    >
+      Back to Home
+    </button>
+  </div>
+</div>
 
         </div>
 

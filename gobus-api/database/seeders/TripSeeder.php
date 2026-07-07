@@ -14,130 +14,267 @@ class TripSeeder extends Seeder
     {
       
 
-        $trips = [
+    
+        $routes = [
+
+            /*
+            ==========================================================
+            Damascus -> Aleppo
+            مرتان يومياً (07:00 و 14:00)
+            ==========================================================
+            */
 
             [
-                'bus_id'=>1,
-                'departure_station_id'=>1,
-                'arrival_station_id'=>3,
-                'departure_time'=>now()->addDay()->setTime(8,0),
-                'arrival_time'=>now()->addDay()->setTime(13,0),
-                'duration_minutes'=>300,
-                'price'=>35,
-                'status'=>'scheduled',
+                'from'=>1,
+                'to'=>3,
+                'duration'=>300,
                 'description'=>'Damascus → Aleppo',
+
+                'departures'=>[
+
+                    [
+                        'time'=>'07:00',
+                        'companies'=>[
+                            ['company'=>1,'bus'=>1,'price'=>35000],
+                            ['company'=>2,'bus'=>4,'price'=>36000],
+                            ['company'=>3,'bus'=>6,'price'=>33000],
+                            ['company'=>4,'bus'=>8,'price'=>34000],
+                        ]
+                    ],
+
+                    [
+                        'time'=>'14:00',
+                        'companies'=>[
+                            ['company'=>1,'bus'=>2,'price'=>35500],
+                            ['company'=>2,'bus'=>5,'price'=>36500],
+                            ['company'=>3,'bus'=>7,'price'=>33500],
+                            ['company'=>4,'bus'=>9,'price'=>34500],
+                        ]
+                    ],
+
+                ]
             ],
 
+            /*
+            ==========================================================
+            Aleppo -> Damascus
+            مرتان يومياً
+            ==========================================================
+            */
+
             [
-                'bus_id'=>2,
-                'departure_station_id'=>3,
-                'arrival_station_id'=>1,
-                'departure_time'=>now()->addDay()->setTime(15,0),
-                'arrival_time'=>now()->addDay()->setTime(20,0),
-                'duration_minutes'=>300,
-                'price'=>35,
-                'status'=>'scheduled',
+                'from'=>3,
+                'to'=>1,
+                'duration'=>300,
                 'description'=>'Aleppo → Damascus',
+
+                'departures'=>[
+
+                    [
+                        'time'=>'08:00',
+                        'companies'=>[
+                            ['company'=>1,'bus'=>2,'price'=>35000],
+                            ['company'=>2,'bus'=>5,'price'=>36000],
+                            ['company'=>3,'bus'=>7,'price'=>33000],
+                            ['company'=>4,'bus'=>9,'price'=>34000],
+                        ]
+                    ],
+
+                    [
+                        'time'=>'16:00',
+                        'companies'=>[
+                            ['company'=>1,'bus'=>1,'price'=>35500],
+                            ['company'=>2,'bus'=>4,'price'=>36500],
+                            ['company'=>3,'bus'=>6,'price'=>33500],
+                            ['company'=>4,'bus'=>8,'price'=>34500],
+                        ]
+                    ],
+
+                ]
             ],
 
+            /*
+            ==========================================================
+            Damascus -> Latakia
+            ==========================================================
+            */
+
             [
-                'bus_id'=>3,
-                'departure_station_id'=>1,
-                'arrival_station_id'=>6,
-                'departure_time'=>now()->addDays(2)->setTime(9,0),
-                'arrival_time'=>now()->addDays(2)->setTime(13,0),
-                'duration_minutes'=>240,
-                'price'=>20,
-                'status'=>'scheduled',
+                'from'=>1,
+                'to'=>6,
+                'duration'=>240,
                 'description'=>'Damascus → Latakia',
+
+                'departures'=>[
+                    [
+                        'time'=>'07:30',
+                        'companies'=>[
+                            ['company'=>1,'bus'=>3,'price'=>28000],
+                            ['company'=>2,'bus'=>4,'price'=>29000],
+                            ['company'=>3,'bus'=>6,'price'=>30000],
+                            ['company'=>4,'bus'=>10,'price'=>27000],
+                        ]
+                    ]
+                ]
             ],
 
+            /*
+            ==========================================================
+            Latakia -> Damascus
+            ==========================================================
+            */
+
             [
-                'bus_id'=>4,
-                'departure_station_id'=>6,
-                'arrival_station_id'=>1,
-                'departure_time'=>now()->addDays(2)->setTime(15,0),
-                'arrival_time'=>now()->addDays(2)->setTime(19,0),
-                'duration_minutes'=>240,
-                'price'=>20,
-                'status'=>'scheduled',
+                'from'=>6,
+                'to'=>1,
+                'duration'=>240,
                 'description'=>'Latakia → Damascus',
+
+                'departures'=>[
+                    [
+                        'time'=>'14:00',
+                        'companies'=>[
+                            ['company'=>1,'bus'=>2,'price'=>28000],
+                            ['company'=>4,'bus'=>8,'price'=>27500],
+                        ]
+                    ]
+                ]
             ],
 
-            [
-                'bus_id'=>1,
-                'departure_station_id'=>4,
-                'arrival_station_id'=>3,
-                'departure_time'=>now()->addDays(3)->setTime(8,30),
-                'arrival_time'=>now()->addDays(3)->setTime(11,30),
-                'duration_minutes'=>180,
-                'price'=>15,
-                'status'=>'scheduled',
-                'description'=>'Homs → Aleppo',
-            ],
+            /*
+            ==========================================================
+            Damascus -> Tartus
+            ==========================================================
+            */
 
             [
-                'bus_id'=>2,
-                'departure_station_id'=>3,
-                'arrival_station_id'=>4,
-                'departure_time'=>now()->addDays(3)->setTime(16,0),
-                'arrival_time'=>now()->addDays(3)->setTime(19,0),
-                'duration_minutes'=>180,
-                'price'=>15,
-                'status'=>'scheduled',
-                'description'=>'Aleppo → Homs',
+                'from'=>1,
+                'to'=>7,
+                'duration'=>270,
+                'description'=>'Damascus → Tartus',
+
+                'departures'=>[
+                    [
+                        'time'=>'08:30',
+                        'companies'=>[
+                            ['company'=>2,'bus'=>5,'price'=>32000],
+                            ['company'=>3,'bus'=>7,'price'=>30000],
+                        ]
+                    ]
+                ]
             ],
 
-            [
-                'bus_id'=>3,
-                'departure_station_id'=>5,
-                'arrival_station_id'=>7,
-                'departure_time'=>now()->addDays(4)->setTime(10,0),
-                'arrival_time'=>now()->addDays(4)->setTime(12,30),
-                'duration_minutes'=>150,
-                'price'=>12,
-                'status'=>'scheduled',
-                'description'=>'Hama → Tartus',
-            ],
+            /*
+            ==========================================================
+            Tartus -> Damascus
+            ==========================================================
+            */
 
             [
-                'bus_id'=>4,
-                'departure_station_id'=>7,
-                'arrival_station_id'=>5,
-                'departure_time'=>now()->addDays(4)->setTime(15,0),
-                'arrival_time'=>now()->addDays(4)->setTime(17,30),
-                'duration_minutes'=>150,
-                'price'=>12,
-                'status'=>'scheduled',
-                'description'=>'Tartus → Hama',
+                'from'=>7,
+                'to'=>1,
+                'duration'=>270,
+                'description'=>'Tartus → Damascus',
+
+                'departures'=>[
+                    [
+                        'time'=>'15:00',
+                        'companies'=>[
+                            ['company'=>1,'bus'=>1,'price'=>31000],
+                            ['company'=>4,'bus'=>9,'price'=>33000],
+                        ]
+                    ]
+                ]
             ],
 
-            [
-                'bus_id'=>2,
-                'departure_station_id'=>13,
-                'arrival_station_id'=>1,
-                'departure_time'=>now()->addDays(5)->setTime(7,0),
-                'arrival_time'=>now()->addDays(5)->setTime(9,0),
-                'duration_minutes'=>120,
-                'price'=>10,
-                'status'=>'scheduled',
-                'description'=>'Daraa → Damascus',
-            ],
+            /*
+            ==========================================================
+            Damascus -> Homs
+            ==========================================================
+            */
 
             [
-                'bus_id'=>1,
-                'departure_station_id'=>1,
-                'arrival_station_id'=>13,
-                'departure_time'=>now()->addDays(35)->setTime(17,0),
-                'arrival_time'=>now()->addDays(35)->setTime(19,0),
-                'duration_minutes'=>120,
-                'price'=>10,
-                'status'=>'scheduled',
-                'description'=>'Damascus → Daraa',
+                'from'=>1,
+                'to'=>4,
+                'duration'=>150,
+                'description'=>'Damascus → Homs',
+
+                'departures'=>[
+                    [
+                        'time'=>'08:00',
+                        'companies'=>[
+                            ['company'=>2,'bus'=>4,'price'=>18000],
+                        ]
+                    ]
+                ]
+            ],
+
+            /*
+            ==========================================================
+            Homs -> Damascus
+            ==========================================================
+            */
+
+            [
+                'from'=>4,
+                'to'=>1,
+                'duration'=>150,
+                'description'=>'Homs → Damascus',
+
+                'departures'=>[
+                    [
+                        'time'=>'17:00',
+                        'companies'=>[
+                            ['company'=>3,'bus'=>6,'price'=>18000],
+                        ]
+                    ]
+                ]
             ],
 
         ];
 
-        Trip::insert($trips);
+        $day = 1;
+
+        foreach ($routes as $route) {
+
+            foreach ($route['departures'] as $departureGroup) {
+
+                foreach ($departureGroup['companies'] as $trip) {
+
+                    $departure = now()
+                        ->addDays($day)
+                        ->setTimeFromTimeString($departureGroup['time']);
+
+                    $arrival = (clone $departure)
+                        ->addMinutes($route['duration']);
+
+                    Trip::create([
+
+                        'company_id'=>$trip['company'],
+
+                        'bus_id'=>$trip['bus'],
+
+                        'departure_station_id'=>$route['from'],
+
+                        'arrival_station_id'=>$route['to'],
+
+                        'departure_time'=>$departure,
+
+                        'arrival_time'=>$arrival,
+
+                        'duration_minutes'=>$route['duration'],
+
+                        'price'=>$trip['price'],
+
+                        'status'=>'scheduled',
+
+                        'description'=>$route['description'],
+
+                    ]);
+                }
+
+                $day++;
+            }
+        }
     }
 }

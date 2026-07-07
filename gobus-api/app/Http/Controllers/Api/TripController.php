@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Company;
 use App\Models\Trip;
 use App\Models\BookingSeat;
 class TripController extends Controller
@@ -21,6 +22,7 @@ class TripController extends Controller
     ]);
 
     $trips = Trip::with([
+            'company',
             'bus',
             'departureStation',
             'arrivalStation',
@@ -98,6 +100,11 @@ class TripController extends Controller
             return [
 
                 'id' => $trip->id,
+                'company' => $trip->company ? [
+                   'id' => $trip->company->id,
+                   'name' => $trip->company->name,
+                   'logo' => $trip->company->logo_url,
+                    ] : null,
 
                 'bus' =>
                     $trip->bus->name,
@@ -167,16 +174,17 @@ class TripController extends Controller
 }
 
     /**
-     * Show single trip details (for booking page)
+     * Show trip details 
      */
    public function show($id)
 {
     $trip = Trip::with([
-        'bus.seats',
-        'departureStation',
-        'arrivalStation',
-        'stations',
-        'restStops'
+        'company',
+    'bus.seats',
+    'departureStation',
+    'arrivalStation',
+    'stations',
+    'restStops',
     ])
     ->withAvg('reviews', 'rating')
     ->withCount('reviews')
@@ -231,6 +239,7 @@ class TripController extends Controller
   public function index()
 {
     $trips = Trip::with([
+        'company',
         'bus',
         'departureStation',
         'arrivalStation'
@@ -264,7 +273,11 @@ class TripController extends Controller
         return [
 
             'id' => $trip->id,
-
+            'company' => [
+                'id' => $trip->company->id,
+                'name' => $trip->company->name,
+                'logo' => $trip->company->logo_url,
+],
             'bus' =>
                 $trip->bus->name,
 

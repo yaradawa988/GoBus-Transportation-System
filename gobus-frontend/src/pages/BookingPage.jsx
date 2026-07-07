@@ -10,7 +10,8 @@ import {
   FaBus,
   FaChair,
   FaMapMarkerAlt,
-  FaMoneyBillWave
+  FaMoneyBillWave,
+  FaBuilding
 } from "react-icons/fa";
 
 export default function BookingPage() {
@@ -178,7 +179,15 @@ setTrip(response.trip);
                   {trip.arrival_station?.name}
 
                 </h1>
+ <div className="mt-2 flex items-center gap-2">
 
+    <FaBuilding className="text-orange-500" />
+     
+    <span className="font-semibold text-slate-700">
+        {trip.company?.name} Company
+    </span>
+
+</div>
                 <p className="text-sm text-gray-500">
 
                   Select your preferred seats

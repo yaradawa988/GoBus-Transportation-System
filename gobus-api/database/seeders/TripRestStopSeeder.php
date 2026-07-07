@@ -14,198 +14,76 @@ class TripRestStopSeeder extends Seeder
     {
          
 
-        TripRestStop::insert([
+       
+      $routes = [
 
-            /*
-            =====================================
-            Trip 1
-            Damascus -> Aleppo
-            =====================================
-            */
+    [
+        'trip_ids' => range(1,4),
+        'stops' => [
+            [1,1],
+            [2,2],
+            [7,3],
+        ],
+    ],
 
-            [
-                'trip_id' => 1,
-                'rest_stop_id' => 1,
-                'order_no' => 1,
-            ],
+    [
+        'trip_ids' => range(5,8),
+        'stops' => [
+            [7,1],
+            [2,2],
+            [1,3],
+        ],
+    ],
 
-            [
-                'trip_id' => 1,
-                'rest_stop_id' => 2,
-                'order_no' => 2,
-            ],
+    [
+        'trip_ids' => range(9,12),
+        'stops' => [
+            [3,1],
+            [5,2],
+        ],
+    ],
 
-            [
-                'trip_id' => 1,
-                'rest_stop_id' => 7,
-                'order_no' => 3,
-            ],
+    [
+        'trip_ids' => range(13,14),
+        'stops' => [
+            [5,1],
+            [3,2],
+        ],
+    ],
 
-            /*
-            =====================================
-            Trip 2
-            Aleppo -> Damascus
-            =====================================
-            */
+    [
+        'trip_ids' => range(15,16),
+        'stops' => [
+            [3,1],
+            [6,2],
+        ],
+    ],
 
-            [
-                'trip_id' => 2,
-                'rest_stop_id' => 7,
-                'order_no' => 1,
-            ],
+    [
+        'trip_ids' => range(17,18),
+        'stops' => [
+            [6,1],
+            [3,2],
+        ],
+    ],
 
-            [
-                'trip_id' => 2,
-                'rest_stop_id' => 2,
-                'order_no' => 2,
-            ],
+];
+foreach ($routes as $route) {
 
-            [
-                'trip_id' => 2,
-                'rest_stop_id' => 1,
-                'order_no' => 3,
-            ],
+    foreach ($route['trip_ids'] as $tripId) {
 
-            /*
-            =====================================
-            Trip 3
-            Damascus -> Latakia
-            =====================================
-            */
+        foreach ($route['stops'] as $stop) {
 
-            [
-                'trip_id' => 3,
-                'rest_stop_id' => 3,
-                'order_no' => 1,
-            ],
+            TripRestStop::create([
+                'trip_id'      => $tripId,
+                'rest_stop_id' => $stop[0],
+                'order_no'     => $stop[1],
+            ]);
 
-            [
-                'trip_id' => 3,
-                'rest_stop_id' => 5,
-                'order_no' => 2,
-            ],
+        }
 
-            /*
-            =====================================
-            Trip 4
-            Latakia -> Damascus
-            =====================================
-            */
+    }
 
-            [
-                'trip_id' => 4,
-                'rest_stop_id' => 5,
-                'order_no' => 1,
-            ],
-
-            [
-                'trip_id' => 4,
-                'rest_stop_id' => 3,
-                'order_no' => 2,
-            ],
-
-            /*
-            =====================================
-            Trip 5
-            Homs -> Aleppo
-            =====================================
-            */
-
-            [
-                'trip_id' => 5,
-                'rest_stop_id' => 4,
-                'order_no' => 1,
-            ],
-
-            [
-                'trip_id' => 5,
-                'rest_stop_id' => 7,
-                'order_no' => 2,
-            ],
-
-            /*
-            =====================================
-            Trip 6
-            Aleppo -> Homs
-            =====================================
-            */
-
-            [
-                'trip_id' => 6,
-                'rest_stop_id' => 7,
-                'order_no' => 1,
-            ],
-
-            [
-                'trip_id' => 6,
-                'rest_stop_id' => 4,
-                'order_no' => 2,
-            ],
-
-            /*
-            =====================================
-            Trip 7
-            Hama -> Tartus
-            =====================================
-            */
-
-            [
-                'trip_id' => 7,
-                'rest_stop_id' => 4,
-                'order_no' => 1,
-            ],
-
-            [
-                'trip_id' => 7,
-                'rest_stop_id' => 6,
-                'order_no' => 2,
-            ],
-
-            /*
-            =====================================
-            Trip 8
-            Tartus -> Hama
-            =====================================
-            */
-
-            [
-                'trip_id' => 8,
-                'rest_stop_id' => 6,
-                'order_no' => 1,
-            ],
-
-            [
-                'trip_id' => 8,
-                'rest_stop_id' => 4,
-                'order_no' => 2,
-            ],
-
-            /*
-            =====================================
-            Trip 9
-            Daraa -> Damascus
-            =====================================
-            */
-
-            [
-                'trip_id' => 9,
-                'rest_stop_id' => 9,
-                'order_no' => 1,
-            ],
-
-            /*
-            =====================================
-            Trip 10
-            Damascus -> Daraa
-            =====================================
-            */
-
-            [
-                'trip_id' => 10,
-                'rest_stop_id' => 9,
-                'order_no' => 1,
-            ],
-
-        ]);
+}
     }
 }

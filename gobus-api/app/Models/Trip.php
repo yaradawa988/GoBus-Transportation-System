@@ -9,6 +9,7 @@ class Trip extends Model
    use HasFactory;
 
     protected $fillable = [
+         'company_id',
         'bus_id',
         'departure_station_id',
         'arrival_station_id',
@@ -19,7 +20,10 @@ class Trip extends Model
         'status',
         'description',
     ];
-
+    public function company()
+{
+    return $this->belongsTo(Company::class);
+}
     public function bus()
     {
         return $this->belongsTo(Bus::class);
