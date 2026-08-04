@@ -1,92 +1,48 @@
-version: "3.9"
+
 
 services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: gobus
+      MYSQL_USER: gobus
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: rootsecret
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 10
 
   backend:
-
-    build:
-      context: ./gobus-api
-
-    container_name: gobus-api
-
-    restart: unless-stopped
-
+    build: ./gobus-api
     ports:
       - "8000:80"
-
-    depends_on:
-      - database
-      - redis
-
     environment:
-
-      APP_ENV: production
-
-      APP_DEBUG: false
-
-      DB_HOST: database
-
-      REDIS_HOST: redis
-
-    volumes:
-
-      - ./gobus-api/storage:/var/www/html/storage
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_KEY: "base64:PUT_YOUR_GENERATED_KEY_HERE"
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: gobus
+      DB_USERNAME: gobus
+      DB_PASSWORD: secret
+    depends_on:
+      mysql:
+        condition: service_healthy
 
   frontend:
-
-    build:
-      context: ./gobus-frontend
-
-    container_name: gobus-frontend
-
-    restart: unless-stopped
-
+    build: ./gobus-frontend
     ports:
-
-      - "3002:80"
-
+      - "5173:80"
+    environment:
+      VITE_API_URL: "http://localhost:8000"
     depends_on:
-
       - backend
 
-  database:
-
-    image: mariadb:11
-
-    container_name: gobus-db
-
-    restart: unless-stopped
-
-    environment:
-
-      MYSQL_ROOT_PASSWORD: root
-
-      MYSQL_DATABASE: gobus
-
-      MYSQL_USER: gobus
-
-      MYSQL_PASSWORD: gobus
-
-    ports:
-
-      - "3306:3306"
-
-    volumes:
-
-      - gobus-db:/var/lib/mysql
-
-  redis:
-
-    image: redis:7-alpine
-
-    container_name: gobus-redis
-
-    restart: unless-stopped
-
-    ports:
-
-      - "6379:6379"
-
 volumes:
-
-    gobus-db:
+  db_data:

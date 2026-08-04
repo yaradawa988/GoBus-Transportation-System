@@ -16,6 +16,4 @@ Schedule::command(
     'bookings:expire'
 )->everyFiveMinutes();
 
-Schedule::command(
-    'trips:update-statuses'
-)->everyMinute();
+Schedule::command('app:update-trip-statuses')->everyMinute();
